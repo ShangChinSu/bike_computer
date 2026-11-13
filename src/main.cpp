@@ -1,22 +1,25 @@
 #include <Arduino.h>
 #include <Arduino_GFX_Library.h>
 
-// ! Pin define for the board version with postfix Y(B)
-#define TFT_SCK    6
-#define TFT_MOSI   7
-#define TFT_MISO   -1
-#define TFT_CS     10
-#define TFT_DC     2
-#define TFT_RST    -1
-#define TFT_BL     3
+#include <WiFi.h>
+
+#include "system_config.h"
+#include "display.h"
+#include "app_wifi.h"
+
 
 Arduino_DataBus *bus = new Arduino_ESP32SPI(TFT_DC, TFT_CS, TFT_SCK, TFT_MOSI, TFT_MISO);
 
 Arduino_GFX *gfx = new Arduino_GC9A01(bus, TFT_RST, 0, true);
 
+
 void setup()
 {
 	Serial.begin(115200);
+
+	wifi::initialization();
+	// * Config the time
+	configTime(system_config::gmtOffset_sec, system_config::daylightOffset_sec, system_config::ntpServer1, system_config::ntpServer2);
 
 	pinMode(TFT_BL, OUTPUT);
 	digitalWrite(TFT_BL, HIGH);
@@ -29,9 +32,10 @@ void setup()
 	gfx->fillScreen(0xF800);   // 0xF800 為紅色
 	gfx->setTextColor(0xFFFF); // 0xFFFF 為白色
 	gfx->setTextSize(3);
-	gfx->setCursor(40, 110);
-	gfx->println("SUCCESS");
+	gfx->setCursor(0, 120);
+	gfx->println("Sam & Carina");
 }
+
 
 void loop()
 {
