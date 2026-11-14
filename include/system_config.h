@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sntp.h>
+#include <esp_sntp.h>
 
 
 namespace system_config
