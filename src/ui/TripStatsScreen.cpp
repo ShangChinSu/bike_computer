@@ -46,9 +46,10 @@ void TripStatsScreen::render(Arduino_GFX* gfx, const RideMetrics& metrics, bool 
         gfx->setCursor(45, 174);
         gfx->print("HEART RATE:");
 
-        // Page indicator dots at bottom (left inactive, right active)
-        gfx->drawCircle(112, 215, 3, 0x39E7);
-        gfx->fillCircle(128, 215, 3, 0xFFE0);
+        // Page indicator dots at bottom (3 dots: middle active)
+        gfx->drawCircle(104, 215, 3, 0x39E7);
+        gfx->fillCircle(120, 215, 3, 0xFFE0);
+        gfx->drawCircle(136, 215, 3, 0x39E7);
     }
 
     // Avg speed

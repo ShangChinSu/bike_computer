@@ -8,8 +8,8 @@ namespace wifi
 {
 
 
-constexpr const char* SSID = "SamHome";
-constexpr const char* PASSWORD = "0228229616";
+constexpr const char* SSID = "SPW_X12_866e96";
+constexpr const char* PASSWORD = "9c4d50c712a75";
 
 void initialization();
 

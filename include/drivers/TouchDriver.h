@@ -14,7 +14,7 @@ public:
     bool update();
 
     TouchGesture getGesture() const { return current_gesture; }
-    bool isTouched() const { return touched; }
+    bool isTouched() const { return is_touching; }
     int16_t getX() const { return touch_x; }
     int16_t getY() const { return touch_y; }
 
@@ -27,9 +27,19 @@ private:
     int pin_irq;
 
     TouchGesture current_gesture = TouchGesture::NONE;
-    bool touched = false;
+    TouchGesture pending_gesture = TouchGesture::NONE;
+
+    bool is_touching = false;
+
     int16_t touch_x = 0;
     int16_t touch_y = 0;
+    int16_t start_x = 0;
+    int16_t start_y = 0;
+
+    uint32_t last_poll_time = 0;
+    uint32_t last_touch_seen_ms = 0;
+    uint32_t last_gesture_time = 0;
+    uint32_t touch_start_time = 0;
 
     static constexpr uint8_t CST816_ADDR = 0x15;
 };

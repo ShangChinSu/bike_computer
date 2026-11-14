@@ -39,9 +39,10 @@ void DashboardScreen::render(Arduino_GFX* gfx, const RideMetrics& metrics, bool 
         gfx->setCursor(55, 188);
         gfx->print("TIME:");
 
-        // Page indicator dots at bottom (2 dots: left active, right inactive)
-        gfx->fillCircle(112, 215, 3, 0x07FF);
-        gfx->drawCircle(128, 215, 3, 0x39E7);
+        // Page indicator dots at bottom (3 dots: left active)
+        gfx->fillCircle(104, 215, 3, 0x07FF);
+        gfx->drawCircle(120, 215, 3, 0x39E7);
+        gfx->drawCircle(136, 215, 3, 0x39E7);
     }
 
     // Top status indicator (Recording state + Battery)

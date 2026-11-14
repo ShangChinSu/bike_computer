@@ -12,6 +12,7 @@
 #include "ui/ScreenManager.h"
 #include "ui/DashboardScreen.h"
 #include "ui/TripStatsScreen.h"
+#include "ui/ClockScreen.h"
 
 
 // * Hardware Display Setup
@@ -26,6 +27,7 @@ ImuSensor imu;
 ScreenManager screen_manager(gfx);
 DashboardScreen dashboard_screen;
 TripStatsScreen trip_stats_screen;
+ClockScreen clock_screen;
 
 // * Telemetry State
 RideMetrics ride_metrics;
@@ -112,6 +114,7 @@ void setup()
 	// 4. Register UI Screens
 	screen_manager.addScreen(&dashboard_screen);
 	screen_manager.addScreen(&trip_stats_screen);
+	screen_manager.addScreen(&clock_screen);
 	Serial.printf("[UI] %u screens loaded. Ready for swipe gestures.\n", screen_manager.getScreenCount());
 
 	// 4. Initial Sample Telemetry

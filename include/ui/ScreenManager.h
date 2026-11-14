@@ -31,4 +31,5 @@ private:
     size_t screen_count = 0;
     size_t current_index = 0;
     bool force_redraw = true;
+    uint32_t last_nav_time = 0;
 };

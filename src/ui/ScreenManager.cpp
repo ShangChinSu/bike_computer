@@ -80,14 +80,25 @@ void ScreenManager::processGesture(TouchGesture gesture)
 {
     if (gesture == TouchGesture::NONE) return;
 
-    // Handle universal navigation gestures
-    if (gesture == TouchGesture::SWIPE_LEFT)
+    uint32_t now = millis();
+
+    // Handle universal navigation gestures with cooldown
+    if (gesture == TouchGesture::SWIPE_LEFT || gesture == TouchGesture::SWIPE_RIGHT)
     {
-        nextScreen();
-    }
-    else if (gesture == TouchGesture::SWIPE_RIGHT)
-    {
-        prevScreen();
+        if (now - last_nav_time < 350)
+        {
+            return;
+        }
+        last_nav_time = now;
+
+        if (gesture == TouchGesture::SWIPE_LEFT)
+        {
+            nextScreen();
+        }
+        else
+        {
+            prevScreen();
+        }
     }
     else
     {
